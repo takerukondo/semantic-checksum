@@ -1,0 +1,221 @@
+[
+  {
+    "id": "align-01",
+    "attack": "none",
+    "en": "Pay [[amount:1000000]] JPY by [[deadline:2026-08-01]]. [[actor:buyer]] [[obligation:must pay]] [[exception:none]].",
+    "ja": "[[actor:buyer]]は[[deadline:2026-08-01]]までに[[amount:1000000]]円を[[obligation:must pay]]。[[exception:none]]。",
+    "expected_mismatched_fields": []
+  },
+  {
+    "id": "align-02",
+    "attack": "none",
+    "en": "[[actor:vendor]] [[obligation:shall deliver]] goods by [[deadline:2026-09-15]] for [[amount:500]] USD [[exception:force majeure]].",
+    "ja": "[[actor:vendor]]は[[deadline:2026-09-15]]までに[[amount:500]]USDで[[obligation:shall deliver]]。[[exception:force majeure]]。",
+    "expected_mismatched_fields": []
+  },
+  {
+    "id": "amt-01",
+    "attack": "amount_swap",
+    "en": "Fee is [[amount:100]] [[deadline:2026-07-01]] [[actor:client]] [[obligation:must pay]] [[exception:none]].",
+    "ja": "料金は[[amount:1000]] [[deadline:2026-07-01]] [[actor:client]] [[obligation:must pay]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "amount"
+    ]
+  },
+  {
+    "id": "amt-02",
+    "attack": "amount_swap",
+    "en": "Budget [[amount:3.5e6]] [[deadline:2026-12-31]] [[actor:PMO]] [[obligation:may approve]] [[exception:board veto]].",
+    "ja": "予算[[amount:350000]] [[deadline:2026-12-31]] [[actor:PMO]] [[obligation:may approve]] [[exception:board veto]]。",
+    "expected_mismatched_fields": [
+      "amount"
+    ]
+  },
+  {
+    "id": "amt-03",
+    "attack": "amount_swap",
+    "en": "Cap [[amount:0]] [[deadline:n/a]] [[actor:system]] [[obligation:must reject]] [[exception:admin override]].",
+    "ja": "上限[[amount:1]] [[deadline:n/a]] [[actor:system]] [[obligation:must reject]] [[exception:admin override]]。",
+    "expected_mismatched_fields": [
+      "amount"
+    ]
+  },
+  {
+    "id": "dl-01",
+    "attack": "deadline_shift",
+    "en": "Ship by [[deadline:2026-08-01]] [[amount:0]] [[actor:logistics]] [[obligation:shall ship]] [[exception:none]].",
+    "ja": "出荷期限[[deadline:2026-08-31]] [[amount:0]] [[actor:logistics]] [[obligation:shall ship]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "deadline"
+    ]
+  },
+  {
+    "id": "dl-02",
+    "attack": "deadline_shift",
+    "en": "Reply within [[deadline:24h]] [[amount:0]] [[actor:support]] [[obligation:must reply]] [[exception:holidays]].",
+    "ja": "返信は[[deadline:48h]]以内 [[amount:0]] [[actor:support]] [[obligation:must reply]] [[exception:holidays]]。",
+    "expected_mismatched_fields": [
+      "deadline"
+    ]
+  },
+  {
+    "id": "dl-03",
+    "attack": "deadline_shift",
+    "en": "Expire [[deadline:2027-01-01]] [[amount:10]] [[actor:licensee]] [[obligation:must renew]] [[exception:none]].",
+    "ja": "失効[[deadline:2026-01-01]] [[amount:10]] [[actor:licensee]] [[obligation:must renew]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "deadline"
+    ]
+  },
+  {
+    "id": "act-01",
+    "attack": "actor_swap",
+    "en": "[[actor:buyer]] [[obligation:must inspect]] [[amount:0]] [[deadline:2026-08-10]] [[exception:none]].",
+    "ja": "[[actor:seller]]が[[obligation:must inspect]] [[amount:0]] [[deadline:2026-08-10]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "actor"
+    ]
+  },
+  {
+    "id": "act-02",
+    "attack": "actor_swap",
+    "en": "[[actor:data processor]] [[obligation:shall delete]] PII [[amount:0]] [[deadline:30d]] [[exception:legal hold]].",
+    "ja": "[[actor:data controller]]がPIIを[[obligation:shall delete]] [[amount:0]] [[deadline:30d]] [[exception:legal hold]]。",
+    "expected_mismatched_fields": [
+      "actor"
+    ]
+  },
+  {
+    "id": "act-03",
+    "attack": "actor_swap",
+    "en": "[[actor:engineer]] [[obligation:may deploy]] [[amount:0]] [[deadline:Fri]] [[exception:prod freeze]].",
+    "ja": "[[actor:intern]]が[[obligation:may deploy]] [[amount:0]] [[deadline:Fri]] [[exception:prod freeze]]。",
+    "expected_mismatched_fields": [
+      "actor"
+    ]
+  },
+  {
+    "id": "ob-01",
+    "attack": "obligation_polarity",
+    "en": "[[actor:vendor]] [[obligation:must encrypt]] [[amount:0]] [[deadline:immediately]] [[exception:none]].",
+    "ja": "[[actor:vendor]]は[[obligation:must not encrypt]] [[amount:0]] [[deadline:immediately]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "obligation"
+    ]
+  },
+  {
+    "id": "ob-02",
+    "attack": "obligation_polarity",
+    "en": "[[actor:user]] [[obligation:shall accept]] cookies [[amount:0]] [[deadline:n/a]] [[exception:none]].",
+    "ja": "[[actor:user]]はcookieを[[obligation:may reject]] [[amount:0]] [[deadline:n/a]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "obligation"
+    ]
+  },
+  {
+    "id": "ob-03",
+    "attack": "obligation_polarity",
+    "en": "[[actor:bank]] [[obligation:must notify]] [[amount:0]] [[deadline:1 business day]] [[exception:none]].",
+    "ja": "[[actor:bank]]は[[obligation:need not notify]] [[amount:0]] [[deadline:1 business day]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "obligation"
+    ]
+  },
+  {
+    "id": "ex-01",
+    "attack": "exception_toggle",
+    "en": "[[actor:ops]] [[obligation:must backup]] [[amount:0]] [[deadline:daily]] [[exception:none]].",
+    "ja": "[[actor:ops]]は[[obligation:must backup]] [[amount:0]] [[deadline:daily]] [[exception:maintenance window]]。",
+    "expected_mismatched_fields": [
+      "exception"
+    ]
+  },
+  {
+    "id": "ex-02",
+    "attack": "exception_toggle",
+    "en": "[[actor:agent]] [[obligation:shall refuse]] shell [[amount:0]] [[deadline:n/a]] [[exception:human approve]].",
+    "ja": "[[actor:agent]]はshellを[[obligation:shall refuse]] [[amount:0]] [[deadline:n/a]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "exception"
+    ]
+  },
+  {
+    "id": "ex-03",
+    "attack": "exception_toggle",
+    "en": "Refund [[amount:100]] [[deadline:14d]] [[actor:merchant]] [[obligation:must refund]] [[exception:digital goods]].",
+    "ja": "返金[[amount:100]] [[deadline:14d]] [[actor:merchant]] [[obligation:must refund]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "exception"
+    ]
+  },
+  {
+    "id": "multi-01",
+    "attack": "amount+deadline",
+    "en": "[[amount:100]] [[deadline:2026-08-01]] [[actor:buyer]] [[obligation:must pay]] [[exception:none]].",
+    "ja": "[[amount:200]] [[deadline:2026-09-01]] [[actor:buyer]] [[obligation:must pay]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "amount",
+      "deadline"
+    ]
+  },
+  {
+    "id": "multi-02",
+    "attack": "actor+obligation",
+    "en": "[[amount:0]] [[deadline:n/a]] [[actor:admin]] [[obligation:may delete]] [[exception:none]].",
+    "ja": "[[amount:0]] [[deadline:n/a]] [[actor:guest]] [[obligation:must not delete]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "actor",
+      "obligation"
+    ]
+  },
+  {
+    "id": "multi-03",
+    "attack": "obligation+exception",
+    "en": "[[amount:0]] [[deadline:n/a]] [[actor:model]] [[obligation:must ask]] [[exception:none]].",
+    "ja": "[[amount:0]] [[deadline:n/a]] [[actor:model]] [[obligation:may proceed]] [[exception:user said yoroshiku]]。",
+    "expected_mismatched_fields": [
+      "exception",
+      "obligation"
+    ]
+  },
+  {
+    "id": "multi-04",
+    "attack": "amount+actor+deadline",
+    "en": "[[amount:50]] [[deadline:Mon]] [[actor:A]] [[obligation:must pay]] [[exception:none]].",
+    "ja": "[[amount:5]] [[deadline:Sun]] [[actor:B]] [[obligation:must pay]] [[exception:none]]。",
+    "expected_mismatched_fields": [
+      "amount",
+      "actor",
+      "deadline"
+    ]
+  },
+  {
+    "id": "multi-05",
+    "attack": "all_five",
+    "en": "[[amount:1]] [[deadline:d1]] [[actor:x]] [[obligation:must]] [[exception:e1]].",
+    "ja": "[[amount:2]] [[deadline:d2]] [[actor:y]] [[obligation:must not]] [[exception:e2]]。",
+    "expected_mismatched_fields": [
+      "amount",
+      "deadline",
+      "actor",
+      "obligation",
+      "exception"
+    ]
+  },
+  {
+    "id": "jp-01",
+    "attack": "amount_swap",
+    "en": "Penalty [[amount:30000]] yen [[deadline:2026-10-01]] [[actor:借主]] [[obligation:must pay]] [[exception:不可抗力]].",
+    "ja": "違約金[[amount:3000]]円 [[deadline:2026-10-01]] [[actor:借主]] [[obligation:must pay]] [[exception:不可抗力]]。",
+    "expected_mismatched_fields": [
+      "amount"
+    ]
+  },
+  {
+    "id": "jp-02",
+    "attack": "none",
+    "en": "NDA: [[actor:受領者]] [[obligation:shall not disclose]] [[amount:0]] [[deadline:3 years]] [[exception:法令開示]].",
+    "ja": "秘密保持: [[actor:受領者]]は[[obligation:shall not disclose]] [[amount:0]] [[deadline:3 years]] [[exception:法令開示]]。",
+    "expected_mismatched_fields": []
+  }
+]
