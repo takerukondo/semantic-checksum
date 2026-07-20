@@ -38,6 +38,19 @@ def test_field_diff_detects_amount():
     assert diff["match"] is False
 
 
+def test_unmarked_documents_are_incomplete_not_a_match():
+    diff = field_diff(extract_marked("hello"), extract_marked("こんにちは"))
+    assert diff["complete"] is False
+    assert diff["match"] is False
+    assert diff["missing_left"] == [
+        "amount",
+        "deadline",
+        "actor",
+        "obligation",
+        "exception",
+    ]
+
+
 def test_checksum_deterministic():
     fields = {"amount": "100", "deadline": "D", "actor": "A", "obligation": "must", "exception": "none"}
     assert field_checksum(fields) == field_checksum(fields)

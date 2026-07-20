@@ -5,21 +5,20 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "semantic-checksum"
 version = "0.1.0"
-description = "Fixed 5-field bilingual requirement drift detector (CLI + synthetic golden)"
+description = "Deterministic diff for explicitly annotated bilingual requirement fields"
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
 requires-python = ">=3.11"
 authors = [{ name = "Takeru Kondo" }]
 keywords = ["bilingual", "requirements", "drift", "checksum", "cli"]
 classifiers = [
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
 ]
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0"]
+dev = ["build>=1.2", "pytest>=8.0"]
 
 [project.scripts]
 semantic-checksum = "semantic_checksum.cli:main"

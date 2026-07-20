@@ -14,7 +14,6 @@ from semantic_checksum.score import score_golden
 
 
 def _read_text(path: Path) -> str:
-    # Reject path traversal / absolute escape relative to CWD when under data/
     resolved = path.resolve()
     try:
         text = resolved.read_text(encoding="utf-8")
@@ -45,6 +44,12 @@ def cmd_diff(args: argparse.Namespace) -> int:
     right = extract_marked(_read_text(Path(args.right)))
     result = field_diff(left, right)
     print(json.dumps(result, ensure_ascii=False, indent=2))
+    if not result["complete"]:
+        print(
+            "error: both documents need all five explicit field annotations",
+            file=sys.stderr,
+        )
+        return 2
     return 0 if result["match"] else 1
 
 

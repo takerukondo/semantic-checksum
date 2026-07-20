@@ -30,6 +30,14 @@ def test_japanese_path(tmp_path):
     assert main(["extract", str(f)]) == 0
 
 
+def test_diff_rejects_incomplete_annotations(tmp_path):
+    a = tmp_path / "a.txt"
+    b = tmp_path / "b.txt"
+    a.write_text("No annotations here.", encoding="utf-8")
+    b.write_text("ここにも注釈はありません。", encoding="utf-8")
+    assert main(["diff", str(a), str(b)]) == 2
+
+
 def test_path_traversal_read_outside_still_errors_cleanly(tmp_path):
     """CLI should not crash on nonsense paths; missing file → exit 2."""
     bogus = tmp_path / ".." / ".." / "no-such-semantic-checksum-file-xyz"
